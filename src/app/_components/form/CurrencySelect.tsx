@@ -7,7 +7,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Image from "next/image";
-import React from "react";
+import React, { memo } from "react";
 
 interface Props {
   options: CurrencySelectOption[];
@@ -18,20 +18,20 @@ const CurrencySelect = ({ options }: Props) => {
 
   return (
     <Select defaultValue={defaultValue.value}>
-      <SelectTrigger className="w-[280px]">
+      <SelectTrigger className="!h-[auto] w-[280px] bg-white">
         <SelectValue placeholder="" />
       </SelectTrigger>
-      <SelectContent className="max-h-[50dvh]">
+      <SelectContent className="max-h-[250px]">
         {options.map((option) => (
-          <SelectItem key={option.value} value={option.value}>
+          <SelectItem key={option.value + option.label} value={option.value}>
             <Image
               className="rounded-full"
-              width={20}
-              height={20}
+              width={25}
+              height={25}
               src={option.imgSrc}
               alt={`${option.label} logo image`}
             />
-            {option.label}
+            {option.value.toUpperCase()}
           </SelectItem>
         ))}
       </SelectContent>
@@ -39,4 +39,4 @@ const CurrencySelect = ({ options }: Props) => {
   );
 };
 
-export default CurrencySelect;
+export default memo(CurrencySelect);
