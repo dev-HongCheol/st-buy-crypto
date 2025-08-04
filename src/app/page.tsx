@@ -3,7 +3,7 @@ import Form from "./_components/form/Form";
 
 export default async function Home() {
   const markets = await getMarkets();
-  console.log("🚀 ~ Home ~ makets_", markets);
+  console.log("🚀 ~ Home ~ makets_", markets[0]);
 
   return <Form markets={markets} />;
 }

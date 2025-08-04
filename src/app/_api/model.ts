@@ -1,3 +1,5 @@
+import z from "zod";
+
 export interface CoinInfo {
   id: string;
   symbol: string;
@@ -32,3 +34,20 @@ export interface CurrencySelectOption {
   value: string;
   imgSrc: string;
 }
+
+export const buyCryptoSchema = z.object({
+  spend: z.object({
+    currency: z.string(),
+    amount: z.string(),
+  }),
+  receive: z.object({
+    currency: z.string(),
+    amount: z.string(),
+  }),
+  payment: z.object({
+    method: z.string(),
+    price: z.number(),
+  }),
+});
+
+export type IBuyCryptoSchema = z.infer<typeof buyCryptoSchema>;

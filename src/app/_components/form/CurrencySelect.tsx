@@ -11,13 +11,14 @@ import React, { memo } from "react";
 
 interface Props {
   options: CurrencySelectOption[];
+  onChange: (selectedCurrencyValue: string) => void;
 }
 
-const CurrencySelect = ({ options }: Props) => {
+const CurrencySelect = ({ options, onChange }: Props) => {
   const defaultValue = options[0];
 
   return (
-    <Select defaultValue={defaultValue.value}>
+    <Select defaultValue={defaultValue.value} onValueChange={onChange}>
       <SelectTrigger className="!h-[auto] w-[280px] bg-white">
         <SelectValue placeholder="" />
       </SelectTrigger>
@@ -31,7 +32,7 @@ const CurrencySelect = ({ options }: Props) => {
               src={option.imgSrc}
               alt={`${option.label} logo image`}
             />
-            {option.value.toUpperCase()}
+            {option.label.toUpperCase()}
           </SelectItem>
         ))}
       </SelectContent>
